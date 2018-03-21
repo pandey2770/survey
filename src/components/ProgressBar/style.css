@@ -1,0 +1,19 @@
+.initial {
+  display: inline-block;
+  height: 20px;
+  transition: 1s;
+}
+.initial-red {
+  background-color: red;
+  height: 20px;
+  transition: 1s;
+  width: 100px;
+}
+.initial-yellow {
+  background-color: yellow;
+  width: 100px;
+}
+.initial-green {
+  background-color: green;
+  width: 150px;
+}
