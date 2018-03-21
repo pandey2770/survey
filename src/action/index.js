@@ -15,7 +15,8 @@ var json = [
     ques:'would you recommend this prodect to your any one..?',
   }
 ]
-
+var i=0;
+var result = [];
 export const firstQues = () => {
   return {
     type:'FIRST',
@@ -23,16 +24,45 @@ export const firstQues = () => {
   }
 }
 
-export const next = () => {
-  return {
-    type:'NEXT',
-    data:json[2]
+export const next = (ques,answer) => {
+  var check = result.filter(x=>x.ques !== ques);
+  if(check.length>=1){
+    result = check;
+    result.push({ques,answer})
+  }else{
+    result.push({ques,answer})
+  }
+  i++
+  if(i === json.length){
+    i=0
+    return {
+      type:'DONE',
+      data:result,
+    }
+  }else{
+    return {
+      type:'NEXT',
+      data:json[i],
+    }
   }
 }
 
 export const back = () => {
-  return {
-    type:'BACK',
-    data:json
+  i--
+  if(i === -1){
+    i=0
+    return {
+      type:'BACK',
+      data:json[i],
+    }
+  }else{
+    return {
+      type:'BACK',
+      data:json[i],
+    }
   }
+}
+
+export const preview = () => {
+  
 }

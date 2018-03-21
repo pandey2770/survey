@@ -28,7 +28,6 @@ class ProgressBar extends Component {
 }  
 
 function mapStateToprpos(state) {
-  console.log(state)
   return {
     bar:state.bar
   };

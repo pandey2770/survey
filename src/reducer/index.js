@@ -7,20 +7,48 @@ const surveyReducer = (state = [], action) => {
     case "NEXT":
       state.shift();
       return [...state,action.data]
+    case "BACK":
+      state.shift();
+      return [...state,action.data]
+    case"DONE":
+    state.shift();    
+      return state
     default:
       return state;
   }
 };
 
-const barReducer = (state = [], action) => {
+const resultReducer = (state = [], action) => {
   switch (action.type) {
-    case "NEXT":
-      return [...state,'initial-red']
+    case "DONE":
+      return [...state,action.data]
     default:
       return state;
   }
 };
+
+var i= 0;
+const barReducer = (state = [], action) => {
+  switch (action.type) {
+    case "NEXT":
+      i++
+      state.shift();          
+      return [...state,`initial-${i}`]
+    case "BACK":
+      i--
+      state.shift();          
+      return [...state,`initial-${i}`]
+    case "DONE":
+      i++
+      state.shift();          
+      return [...state,`initial-${i}`]  
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   survey: surveyReducer,
-  bar: barReducer
+  bar: barReducer,
+  result: resultReducer
 });

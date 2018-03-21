@@ -1,19 +1,34 @@
 .initial {
   display: inline-block;
   height: 20px;
-  transition: 1s;
 }
-.initial-red {
-  background-color: red;
+.initial-1 {
+  background-color: #D77C7C;
   height: 20px;
   transition: 1s;
-  width: 100px;
+  width: 20%;
 }
-.initial-yellow {
+.initial-2 {
+  background-color: red;
+  width: 40%;
+  height: 20px;
+  transition: 1s;
+}
+.initial-3 {
+  background-color: #F4F469;
+  width: 60%;
+  height: 20px;
+  transition: 1s;
+}
+.initial-4 {
   background-color: yellow;
-  width: 100px;
+  width: 80%;
+  height: 20px;
+  transition: 1s;
 }
-.initial-green {
+.initial-5 {
   background-color: green;
-  width: 150px;
+  width: 100%s;
+  height: 20px;
+  transition: 1s;
 }
