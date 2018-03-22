@@ -14,8 +14,8 @@ class Preview extends Component {
       return null;
     }    
     return (
-      <div>
-        <button onClick={this.preview}>Preview Survey</button>
+      <div className='previewButton'>
+        <button className='button' onClick={this.preview}>Preview Survey</button>
       </div>
     )
   }
@@ -23,7 +23,7 @@ class Preview extends Component {
 
 function mapStateToprpos(state) {
   return {
-    result:state.result
+    result:state.result.show
   };
 }
 

@@ -18,10 +18,12 @@ const surveyReducer = (state = [], action) => {
   }
 };
 
-const resultReducer = (state = [], action) => {
+const resultReducer = (state = {show:false}, action) => {
   switch (action.type) {
     case "DONE":
-      return [...state,action.data]
+      return {...state,show:true}
+    case "SHOW":
+      return {...state, show:false}  
     default:
       return state;
   }
@@ -41,7 +43,19 @@ const barReducer = (state = [], action) => {
     case "DONE":
       i++
       state.shift();          
-      return [...state,`initial-${i}`]  
+      return [...state,`initial-${i}`]
+    case "SHOW":
+    state.shift(); 
+      return [...state]
+    default:
+      return state;
+  }
+};
+
+const previewReducer = (state = [], action) => {
+  switch (action.type) {
+    case "SHOW":
+      return [ ...state, action.data]  
     default:
       return state;
   }
@@ -50,5 +64,6 @@ const barReducer = (state = [], action) => {
 export default combineReducers({
   survey: surveyReducer,
   bar: barReducer,
-  result: resultReducer
+  result: resultReducer,
+  preview:previewReducer
 });

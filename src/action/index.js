@@ -37,12 +37,16 @@ export const next = (ques,answer) => {
     i=0
     return {
       type:'DONE',
-      data:result,
     }
   }else{
-    return {
-      type:'NEXT',
-      data:json[i],
+    if(localStorage){
+      var resultJson = JSON.stringify(result);
+      localStorage.clear();
+      localStorage.result=resultJson
+      return {
+        type:'NEXT',
+        data:json[i]
+      }
     }
   }
 }
@@ -53,16 +57,19 @@ export const back = () => {
     i=0
     return {
       type:'BACK',
-      data:json[i],
+      data:json[i]
     }
   }else{
     return {
       type:'BACK',
-      data:json[i],
+      data:json[i]
     }
   }
 }
 
 export const preview = () => {
-  
+  return {
+    type:'SHOW',
+    data:result
+  } 
 }

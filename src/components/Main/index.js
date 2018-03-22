@@ -7,7 +7,8 @@ class Main extends Component {
 
 state = {
   answer:'',
-  ques:''
+  ques:'',
+  button:false
 };
 
 componentWillMount(){
@@ -15,7 +16,17 @@ componentWillMount(){
 }
 
 componentWillReceiveProps(props){
-  if(props.survey[0]==null||undefined){
+  const {survey,preview} = props;
+  var statement = preview[0]
+  if(statement){
+    for(let i =0;i <= statement.length; i++){
+      var newStatement=statement[i]
+      for(let x in newStatement){
+        var finalStatement = newStatement[x];
+      }
+    }
+  }
+  if(survey[0]==null||undefined){
     return null
   }else{
     this.setState({
@@ -31,7 +42,8 @@ next = () => {
   }else{
     this.props.next(...ques,answer);
     this.setState({
-      answer: ''
+      answer: '',
+      button:false
     });
   }
 }
@@ -41,16 +53,26 @@ back = () => {
 }
 
 change = event => {
+  const {button} = this.state;
   this.setState({
     [`${event.target.name}`]: event.target.value
   });
+  if(event.target.value && event.target.value.length > 0){
+    this.setState({
+      button:true
+    });
+  }else{
+    this.setState({
+      button:false
+    });
+  }
 };
 
   render () {
-    const { answer } = this.state;
-    const { survey, result } = this.props;
+    const { answer, button } = this.state;
+    const { survey } = this.props;
     return (
-      <div>
+      <div className='quesStyle'>
         {!survey
           ? null
           :<div>
@@ -61,16 +83,20 @@ change = event => {
             <p>{s.ques}</p>
             <input 
               type="text" 
+              className='inputField'
               name="answer" 
               placeholder="answer" 
               value={answer}  
               onChange={this.change}/>
+            <div>
+              <button onClick={this.back}>Back</button>
+              {button && <button onClick={this.next}>Next</button>}
+            </div>  
           </div>
           )}
-        <button onClick={this.back}>Back</button>
-        <button onClick={this.next}>Next</button>
         </div>
          }
+         
       </div>
     )
   }
@@ -79,7 +105,7 @@ change = event => {
 function mapStateToprpos(state) {
   return {
     survey:state.survey,
-    result:state.result    
+    preview:state.preview    
   };
 }
 
