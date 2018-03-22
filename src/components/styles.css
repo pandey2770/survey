@@ -12,6 +12,20 @@ h1 {
   font-size: 35px;
   text-align: center;
 }
+.buttonNext {
+  background: none;
+  border: none;
+  font-size: 20px;
+  outline: none;
+  margin: 50px;
+}
+.quesStyle2{
+  top: 5%;
+  width: 100%;
+  position: fixed;
+  font-size: 35px;
+  text-align: center;
+}
 .inputField {
   height: 34px;
   width: 25%;

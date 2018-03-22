@@ -8,21 +8,50 @@ class Main extends Component {
 state = {
   answer:'',
   ques:'',
-  button:false
+  button:false,
+  print:'',
+  className:'quesStyle'
 };
 
-componentWillMount(){
-  this.props.firstQues();
-}
 
+componentWillMount(){
+  if(localStorage.result){
+    var itemArray = JSON.parse(localStorage.result);
+    var finalStatement = []
+    if(itemArray){
+      for(let i =0;i <= itemArray.length; i++){
+        var newStatement=itemArray[i]
+        if(newStatement===undefined){
+          return null
+        }else{
+          finalStatement.push(newStatement)
+          this.setState({
+                print:finalStatement,
+                className:'quesStyle2'
+              })
+        }
+      }
+    }
+  }
+  else{
+    this.props.firstQues();
+  }
+}
 componentWillReceiveProps(props){
   const {survey,preview} = props;
   var statement = preview[0]
+  var finalStatement = []
   if(statement){
     for(let i =0;i <= statement.length; i++){
       var newStatement=statement[i]
-      for(let x in newStatement){
-        var finalStatement = newStatement[x];
+      if(newStatement===undefined){
+        return null
+      }else{
+        finalStatement.push(newStatement)
+        this.setState({
+              print:finalStatement,
+              className:'quesStyle2'
+            })
       }
     }
   }
@@ -53,7 +82,6 @@ back = () => {
 }
 
 change = event => {
-  const {button} = this.state;
   this.setState({
     [`${event.target.name}`]: event.target.value
   });
@@ -69,10 +97,10 @@ change = event => {
 };
 
   render () {
-    const { answer, button } = this.state;
+    const { answer, button, print,className } = this.state;
     const { survey } = this.props;
     return (
-      <div className='quesStyle'>
+      <div className={className}>
         {!survey
           ? null
           :<div>
@@ -89,14 +117,20 @@ change = event => {
               value={answer}  
               onChange={this.change}/>
             <div>
-              <button onClick={this.back}>Back</button>
-              {button && <button onClick={this.next}>Next</button>}
+              <button className='buttonNext' onClick={this.back}>Back</button>
+              {button && <button className='buttonNext' onClick={this.next}>Next</button>}
             </div>  
           </div>
           )}
         </div>
          }
-         
+         {!print ? null :
+         print.map((p,id)=>
+          <div key={id}> 
+            <p>Ques. {p.ques}</p> 
+            <p>Ans. {p.answer}</p>
+          </div>
+         )}
       </div>
     )
   }
