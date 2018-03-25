@@ -19,7 +19,7 @@ h1 {
   outline: none;
   margin: 50px;
 }
-.quesStyle2{
+.quesStyle2 {
   top: 5%;
   width: 100%;
   position: fixed;
@@ -48,7 +48,7 @@ h1 {
   height: 20px;
 }
 .initial-1 {
-  background-color: #D77C7C;
+  background-color: #d77c7c;
   height: 20px;
   transition: 1s;
   width: 20%;
@@ -60,7 +60,7 @@ h1 {
   transition: 1s;
 }
 .initial-3 {
-  background-color: #F4F469;
+  background-color: #f4f469;
   width: 60%;
   height: 20px;
   transition: 1s;

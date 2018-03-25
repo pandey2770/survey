@@ -5,7 +5,6 @@ import Preview from './Preview';
 import './styles.css';
 
 class App extends Component {
-
   render() {
     return (
       <div>
@@ -13,9 +12,8 @@ class App extends Component {
         <Main />
         <Preview />
       </div>
-    )
+    );
   }
 }
-
 
 export default App;
